@@ -2,6 +2,7 @@ import { useEffect, useLayoutEffect } from 'react';
 import { Text, View } from 'react-native';
 import { FlatList } from 'react-native-gesture-handler';
 import MealItem from '../Components/MealItem';
+import MealsList from '../Components/MealsList/MealsList';
 import {CATEGORIES, MEALS} from '../data/dummy-data';
 import Styles from './MealsOverviewScreenStyle';
 
@@ -29,32 +30,8 @@ function MealsOverviewScreen({route, navigation}){
     })
 
 
+    return <MealsList items={displayedMeals} />
 
-    function renderMealItem(itemData){
-        const item=itemData.item;
-        const mealItemProps={
-            id: item.id,
-            title:item.title,
-            imageUrl: item.imageUrl,
-            affordability: item.affordability,
-            complexity: item.complexity,
-            duration: item.duration
-
-        }
-        return <MealItem {...mealItemProps} />
-    }
-
-    return(
-        <View style={Styles.container}>
-            {/* <Text>Meals Overview Screen - {catid}</Text> */}
-            <FlatList data={displayedMeals} 
-            keyExtractor={(item)=>item.id} 
-            renderItem={renderMealItem}/>
-            {/* {displayedMeals.map((item)=>(
-                renderMealItem
-            ))} */}
-        </View>
-    )
 
 }
 

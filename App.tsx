@@ -33,6 +33,7 @@ import JustifyContentBasics from './Components/JustifyContentBasics';
 import MealDetailScreen from './Screen/MealDetailScreen';
 import { createDrawerNavigator } from "@react-navigation/drawer";
 import Favorite from './Screen/Favorite';
+import FavoritesContextProvider from './Store/context/favorites-context';
 
 const Stack = createStackNavigator();
 const Drawer = createDrawerNavigator();
@@ -65,9 +66,11 @@ function App(): JSX.Element {
   return (
     <>
       <NavigationContainer>
+        <FavoritesContextProvider>
         <Stack.Navigator screenOptions={{
           headerStyle:{backgroundColor: "#3f2f25"},
-          headerTitleStyle: {color: "white"}
+          headerTitleStyle: {color: "white"},
+          headerTintColor: "white"
         }}>
           <Stack.Screen
             name='Drawer'
@@ -85,7 +88,7 @@ function App(): JSX.Element {
             component={MealDetailScreen}
           ></Stack.Screen>
         </Stack.Navigator>
-
+        </FavoritesContextProvider>
       </NavigationContainer>
       {/* <JustifyContentBasics></JustifyContentBasics> */}
     </>
